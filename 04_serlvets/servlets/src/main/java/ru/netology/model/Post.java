@@ -4,7 +4,7 @@ public class Post {
   private long id;
   private String content;
 
-  public Post() {
+  public Post() {   // postman -> controller -> service -> repository (ArrayList)
   }
 
   public Post(long id, String content) {
@@ -26,5 +26,13 @@ public class Post {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  @Override
+  public String toString() {
+    return "Post{" +
+            "id=" + id +
+            ", content='" + content + '\'' +
+            '}';
   }
 }

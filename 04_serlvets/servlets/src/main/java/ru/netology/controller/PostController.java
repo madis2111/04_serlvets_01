@@ -27,10 +27,13 @@ public class PostController {
     // TODO: deserialize request & serialize response
   }
 
+//  /id=0
+//  /id!=0
+
   public void save(Reader body, HttpServletResponse response) throws IOException {
     response.setContentType(APPLICATION_JSON);
     final var gson = new Gson();
-    final var post = gson.fromJson(body, Post.class);
+    final Post post = gson.fromJson(body, Post.class);
     final var data = service.save(post);
     response.getWriter().print(gson.toJson(data));
   }
