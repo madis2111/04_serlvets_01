@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.Reader;
@@ -36,6 +37,20 @@ public class PostController {
     final Post post = gson.fromJson(body, Post.class);
     final var data = service.save(post);
     response.getWriter().print(gson.toJson(data));
+  }
+
+  public void edit(HttpServletRequest req, HttpServletResponse response) throws IOException {
+    response.setContentType(APPLICATION_JSON);
+    final var gson = new Gson();
+    final Post post = gson.fromJson(req.getReader(), Post.class);
+    int id = Integer.parseInt(req.getParameter("id"));
+    final var data = service.edit(id, post);
+
+    if (data != null) {
+      response.getWriter().print(gson.toJson(data));
+    } else {
+      response.setContentType(null);
+    }
   }
 
   public void removeById(long id, HttpServletResponse response) {

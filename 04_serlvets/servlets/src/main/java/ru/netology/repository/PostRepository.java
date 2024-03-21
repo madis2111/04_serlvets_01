@@ -2,11 +2,7 @@ package ru.netology.repository;
 
 import ru.netology.model.Post;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.HashMap;
+import java.util.*;
 
 // Stub
 public class PostRepository {
@@ -35,6 +31,17 @@ public class PostRepository {
     System.out.println("posts: " + posts);
 
     return post;
+  }
+
+  public Post edit(int id, Post newPost) {
+
+    if (posts.containsKey(id)) {
+        posts.put(id, newPost);
+        return newPost;
+    }
+
+    return null;    // то есть такого id нет
+
   }
 
   public void removeById(long id) {

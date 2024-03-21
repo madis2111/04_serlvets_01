@@ -1,6 +1,7 @@
 package ru.netology.servlet;
 
 import ru.netology.controller.PostController;
+import ru.netology.model.Post;
 import ru.netology.repository.PostRepository;
 import ru.netology.service.PostService;
 
@@ -35,10 +36,17 @@ public class MainServlet extends HttpServlet {
         controller.getById(id, resp);
         return;
       }
-      if (method.equals("POST") && path.equals("/api/posts")) {
+      if (method.equals("POST") && path.equals("/api/posts?id=0")) {
         controller.save(req.getReader(), resp);
         return;
       }
+//      else if (method.equals("POST") && path.equals("/api/posts?id=\\d+")) {
+//        controller.edit(req, resp);
+//        if (resp.getContentType() == null) {
+//          resp.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//        }
+//        return;
+//      }
       if (method.equals("DELETE") && path.matches("/api/posts/\\d+")) {
         // easy way
         final var id = Long.parseLong(path.substring(path.lastIndexOf("/")));
