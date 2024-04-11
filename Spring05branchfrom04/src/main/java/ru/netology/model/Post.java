@@ -4,7 +4,7 @@ public class Post {
   private long id;
   private String content;
 
-  public Post() {
+  public Post() {   // postman -> controller -> service -> repository (ArrayList)
   }
 
   public Post(long id, String content) {

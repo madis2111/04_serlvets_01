@@ -1,14 +1,15 @@
 package ru.netology.repository;
 
-import ru.netology.exception.NotFoundException;
+import org.springframework.stereotype.Repository;
 import ru.netology.model.Post;
 
 import java.util.*;
 
-// Stub
+
+@Repository
 public class PostRepository {
 
-  private HashMap<Integer, Post> posts;
+  private HashMap<Integer, Post> posts;  //  [1,post1;2,post2;3,post3]
 
   private int counter;
 
@@ -41,7 +42,8 @@ public class PostRepository {
         return newPost;
     }
 
-    throw new NotFoundException("No such id");
+    return null;    // то есть такого id нет
+
   }
 
   public void removeById(long id) {
