@@ -4,17 +4,19 @@ import ru.netology.exception.NotFoundException;
 import ru.netology.model.Post;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicLong;
 
 // Stub
 public class PostRepository {
 
-  private HashMap<Integer, Post> posts;
+  private ConcurrentHashMap<Long, Post> posts;
 
-  private int counter;
+  private AtomicLong counter;
 
   public PostRepository() {
-    posts = new HashMap<>();
-    counter = 1;
+    posts = new ConcurrentHashMap<>();
+    counter = new AtomicLong(1);
     System.out.println("posts: " + posts);
   }
 
@@ -23,18 +25,19 @@ public class PostRepository {
   }
 
   public Optional<Post> getById(long id) {
-    return Optional.empty();
+
+    return Optional.of(posts.get(id));
+
   }
 
   public Post save(Post post) {
-    posts.put(counter, post);
-    counter++;
+    posts.put(counter.getAndIncrement(), post);
     System.out.println("posts: " + posts);
 
     return post;
   }
 
-  public Post edit(int id, Post newPost) {
+  public Post edit(long id, Post newPost) {
 
     if (posts.containsKey(id)) {
         posts.put(id, newPost);
@@ -45,5 +48,10 @@ public class PostRepository {
   }
 
   public void removeById(long id) {
+    if (posts.containsKey(id)) {
+      posts.remove(id);
+      return;
+    }
+    throw new NotFoundException("No such id");
   }
 }
