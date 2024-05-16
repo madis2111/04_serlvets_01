@@ -36,6 +36,6 @@ public class PostController {
   }
 
   public void removeById(long id, HttpServletResponse response) {
-    // TODO: deserialize request & serialize response
+    // TODO deserialize request & serialize response
   }
 }

@@ -17,22 +17,27 @@ public class PostRepository {
   public PostRepository() {
     posts = new ConcurrentHashMap<>();
     counter = new AtomicLong(1);
-    System.out.println("posts: " + posts);
+
+//    posts.put(1L,new Post(123,"123text"));
+//    posts.put(2L,new Post(234,"234text"));
+//    posts.put(3L,new Post(345,"345text"));
+
+    System.out.println("posts1: " + posts);
   }
 
-  public List<Post> all() {
-    return Collections.emptyList();
+  public Collection<Post> all() {
+    return posts.values();
   }
 
   public Optional<Post> getById(long id) {
 
-    return Optional.of(posts.get(id));
+    return Optional.ofNullable(posts.get(id));
 
   }
 
   public Post save(Post post) {
     posts.put(counter.getAndIncrement(), post);
-    System.out.println("posts: " + posts);
+    System.out.println("posts3: " + posts);
 
     return post;
   }

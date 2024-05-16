@@ -9,6 +9,7 @@ import java.util.List;
 
 @Service
 public class PostService {
+  @Autowired
   private final PostRepository repository;
 
   public PostService(PostRepository repository) {

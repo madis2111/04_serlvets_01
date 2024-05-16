@@ -16,7 +16,7 @@ public class PostRepository {
   public PostRepository() {
     posts = new HashMap<>();
     counter = 1;
-    System.out.println("posts: " + posts);
+    System.out.println("posts2: " + posts);
   }
 
   public List<Post> all() {
@@ -30,7 +30,7 @@ public class PostRepository {
   public Post save(Post post) {
     posts.put(counter, post);
     counter++;
-    System.out.println("posts: " + posts);
+    System.out.println("posts4: " + posts);
 
     return post;
   }

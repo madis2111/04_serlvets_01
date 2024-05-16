@@ -9,6 +9,8 @@ import java.util.Optional;
 
 @Repository
 public class PostRepositoryStubImpl implements PostRepository {
+
+  // todo ap edit??
   public List<Post> all() {
     return Collections.emptyList();
   }
