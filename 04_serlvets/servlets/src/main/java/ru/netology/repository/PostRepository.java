@@ -1,5 +1,6 @@
 package ru.netology.repository;
 
+import org.springframework.stereotype.Repository;
 import ru.netology.exception.NotFoundException;
 import ru.netology.model.Post;
 
@@ -7,7 +8,6 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-// Stub
 public class PostRepository {
 
   private ConcurrentHashMap<Long, Post> posts;
@@ -18,10 +18,6 @@ public class PostRepository {
     posts = new ConcurrentHashMap<>();
     counter = new AtomicLong(1);
 
-//    posts.put(1L,new Post(123,"123text"));
-//    posts.put(2L,new Post(234,"234text"));
-//    posts.put(3L,new Post(345,"345text"));
-
     System.out.println("posts1: " + posts);
   }
 
@@ -30,7 +26,6 @@ public class PostRepository {
   }
 
   public Optional<Post> getById(long id) {
-
     return Optional.ofNullable(posts.get(id));
 
   }
@@ -38,7 +33,6 @@ public class PostRepository {
   public Post save(Post post) {
     posts.put(counter.getAndIncrement(), post);
     System.out.println("posts3: " + posts);
-
     return post;
   }
 
@@ -48,7 +42,6 @@ public class PostRepository {
         posts.put(id, newPost);
         return newPost;
     }
-
     throw new NotFoundException("No such id");
   }
 
