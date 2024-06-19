@@ -30,7 +30,7 @@ public class PostController {
   }
 
 
-  public void save(Reader body, HttpServletResponse response) throws IOException {
+  public void save(Reader body, HttpServletResponse response ) throws IOException {
     response.setContentType(APPLICATION_JSON);
     final var gson = new Gson();
     final Post post = gson.fromJson(body, Post.class);
